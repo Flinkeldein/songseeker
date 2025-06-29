@@ -6,9 +6,9 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Roboto', sans-serif; /* Using Roboto as a modern sans-serif font */
+    background-color: #FAFAFA; /* Lighter background color */
+    color: #212121; /* Darker text for better contrast */
     line-height: 1.6;
     padding: 20px;
     text-align: center;
@@ -41,47 +41,56 @@ body {
 
 .button {
     display: inline-block;
-    background: #0056b3;
-    color: #ffffff;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
+    background: var(--primary-color); /* Proposed primary color (Teal) */
+    color: #ffffff; /* White text for contrast */
+    font-weight: bold; /* Make button text bold */
+    padding: 12px 24px; /* Increased padding */
+    margin: 10px; /* Adjusted margin for better spacing */
+    border-radius: 8px; /* More rounded corners */
     cursor: pointer;
-    transition: background 0.3s ease;
+    border: none; /* Remove default border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .button_startscan {
     width: 200px;
     height: 80px;
-    display: inline-block;
-    background: #0056b3;
+    background: var(--primary-color); /* Match primary button color */
     color: #ffffff;
-    padding: 10px 5px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    font-size: 1.2em; /* Slightly larger font */
+    font-weight: bold;
+    border-radius: 8px; /* Match general button border-radius */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 5px; /* Keep original padding for this button */
 }
 
 .button_startstop {
     width: 100px;
     height: 50px;
-    display: inline-block;
-    background: #0056b3;
+    background: var(--primary-color); /* Match primary button color */
     color: #ffffff;
-    padding: 10px 5px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    font-weight: bold;
+    border-radius: 8px; /* Match general button border-radius */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 5px; /* Keep original padding for this button */
 }
 
 .cancelScanButton {
+    background-color: var(--danger-color); /* Warm red for cancel */
+    color: #ffffff; /* White text */
+    font-weight: bold;
+    padding: 12px 24px; /* Increased padding */
+    border-radius: 8px; /* Match general button border-radius */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
     z-index: 20;
-}
-
-.button:hover {
-    background: #004494;
+    margin: 10px; /* Adjusted margin */
 }
 
 .text-block {
