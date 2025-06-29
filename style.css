@@ -1,3 +1,14 @@
+:root {
+    --primary-neon: #ff00ff; /* Leuchtendes Magenta */
+    --secondary-neon: #00ffff; /* Leuchtendes Cyan */
+    --accent-neon: #ffff00; /* Leuchtendes Gelb */
+    --background-dark: #1a0a2e; /* Tiefes Dunkelviolett */
+    --glass-background: rgba(26, 10, 46, 0.5); /* Halbtransparentes Violett für Karten */
+    --text-color: #e0e0e0; /* Helles Lavendel-Weiß */
+    --font-heading: 'Press Start 2P', cursive;
+    --font-body: 'Source Code Pro', monospace;
+}
+
 /* Basic Reset */
 * {
     margin: 0;
@@ -6,171 +17,206 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Using Roboto as a modern sans-serif font */
-    background-color: #FAFAFA; /* Lighter background color */
-    color: #212121; /* Darker text for better contrast */
-    line-height: 1.6;
+    font-family: var(--font-body);
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    line-height: 1.8;
     padding: 20px;
     text-align: center;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen durch das Grid */
+    position: relative;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 20px;
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(0, 255, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    animation: grid-scroll 10s linear infinite;
 }
 
-.header {
-    text-align: center;
-    margin: 50px 0;
+@keyframes grid-scroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 -40px;
+    }
 }
 
-.header h1 {
+h2 {
+    font-family: var(--font-heading);
     font-size: 2.5rem;
+    color: var(--primary-neon);
+    text-shadow: 
+        0 0 5px var(--primary-neon),
+        0 0 10px var(--primary-neon),
+        0 0 20px #fff,
+        0 0 30px #fff;
+    margin-bottom: 40px;
+    z-index: 1;
 }
 
-.qr-reader,
-.video-player {
-    background: #ffffff;
-    margin: 20px 0;
+.card {
+    background-color: var(--glass-background);
+    border: 2px solid var(--secondary-neon);
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px var(--secondary-neon);
+    z-index: 1;
 }
 
-.button {
-    display: inline-block;
-    background: var(--primary-color); /* Proposed primary color (Teal) */
-    color: #ffffff; /* White text for contrast */
-    font-weight: bold; /* Make button text bold */
-    padding: 12px 24px; /* Increased padding */
-    margin: 10px; /* Adjusted margin for better spacing */
-    border-radius: 8px; /* More rounded corners */
+.button, .button_startscan, .button_startstop {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--secondary-neon);
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid var(--secondary-neon);
+    padding: 15px 30px;
+    margin: 10px;
     cursor: pointer;
-    border: none; /* Remove default border */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
-    transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    text-shadow: 0 0 5px var(--secondary-neon);
+    box-shadow: 0 0 10px var(--secondary-neon) inset;
+    transition: all 0.2s ease-in-out;
 }
 
-.button_startscan {
-    width: 200px;
-    height: 80px;
-    background: var(--primary-color); /* Match primary button color */
-    color: #ffffff;
-    font-size: 1.2em; /* Slightly larger font */
-    font-weight: bold;
-    border-radius: 8px; /* Match general button border-radius */
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    padding: 10px 5px; /* Keep original padding for this button */
+.button:hover, .button_startscan:hover, .button_startstop:hover {
+    color: var(--background-dark);
+    background-color: var(--secondary-neon);
+    box-shadow: 0 0 20px var(--secondary-neon);
 }
 
-.button_startstop {
-    width: 100px;
-    height: 50px;
-    background: var(--primary-color); /* Match primary button color */
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 8px; /* Match general button border-radius */
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    padding: 10px 5px; /* Keep original padding for this button */
+#cancelScanButton {
+    border-color: var(--primary-neon);
+    color: var(--primary-neon);
+    text-shadow: 0 0 5px var(--primary-neon);
+    box-shadow: 0 0 10px var(--primary-neon) inset;
 }
 
-.cancelScanButton {
-    background-color: var(--danger-color); /* Warm red for cancel */
-    color: #ffffff; /* White text */
-    font-weight: bold;
-    padding: 12px 24px; /* Increased padding */
-    border-radius: 8px; /* Match general button border-radius */
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    z-index: 20;
-    margin: 10px; /* Adjusted margin */
+#cancelScanButton:hover {
+    background-color: var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
 }
 
 .text-block {
     position: relative;
-    margin-top: 12px;
+    margin-top: 20px;
     padding: 1rem;
-    text-align: center;
-    border: 1px solid #333;
-  }
+    text-align: left;
+    border: 1px solid var(--secondary-neon);
+    border-radius: 8px;
+}
 
 .text-block .heading {
     position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX( -50% );
-    padding: 0 0.5rem;
-    font-size: 20px;
+    top: -14px;
+    left: 15px;
+    padding: 0 10px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
     line-height: 1;
-    background-color: #f4f4f4;
+    background-color: var(--background-dark);
+    color: var(--accent-neon);
 }
 
 .settings_div {
     width: 100%;
-    position: absolute;
-    bottom: 0.5rem;
-    left: 0;
-    padding: 0 0.5rem;
     display: none;
+    margin-top: 20px;
+}
+
+label {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-neon);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--primary-neon);
+    box-shadow: 0 0 10px var(--primary-neon);
+}
+
+input[type="number"] {
+    background-color: transparent;
+    border: 2px solid var(--secondary-neon);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 5px;
+    width: 70px;
 }
 
 @media screen and (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
+    h2 {
+        font-size: 1.8rem;
     }
 
-    .container {
-        padding: 0 10px;
+    .card {
+        padding: 15px;
     }
 }
 
 #qr-reader {
-    position: absolute; /* or absolute */
+    position: fixed; /* Fixed position to cover the whole screen */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure it's above other content */
-    background-color: #f4f4f4;
+    z-index: 10;
+    background-color: var(--background-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #qr-video {
-    display: inline-block;
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    max-width: 600px;
+    height: auto;
+    border: 2px solid var(--primary-neon);
+    box-shadow: 0 0 20px var(--primary-neon);
 }
 
-#videotitle {
-    display:  none;
-}
-
-#videoduration {
-    display:  none;
-}
-#videostart {
-    display:  none;
-}
-
+#videotitle,
+#videoduration,
+#videostart,
 #videoid {
-    display: none ;
+    display:  block;
+    margin-bottom: 10px;
 }
 
 #cancelScanButton {
     position: absolute;
-    display:none;
-    background-color: #e95d5d;
-    color: black;
-    z-index: 4;
+    top: 20px;
+    right: 20px;
 }
 
 #cookielist {
@@ -178,5 +224,5 @@ body {
 }
 
 #playback-duration {
-    width: 50px;
+    width: 70px;
 }
