@@ -8,6 +8,7 @@ Example is available at https://songseeker.grub3r.io/
 Inspired from https://hitstergame.com/de-de/ and https://rockster.brettspiel.digital/
 
 Youtube links from the original Hitster cards get be downloaded from https://github.com/andygruber/songseeker-hitster-playlists
+Custom TV-Themes and Metal Playlist: https://github.com/Flinkeldein/songseeker-playlists
 
 qr-scanner from https://github.com/nimiq/qr-scanner
 
